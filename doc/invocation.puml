@@ -1,0 +1,17 @@
+@startuml Mercury Invocation
+start
+
+:Action>
+
+while (is async) is (yes)
+    :Async.actions.(actionName)<
+    :Async.saga<
+    :ReduxSaga]
+endwhile (no)
+
+:Sync.actions.(actionName)<
+:Sync.reducer<
+:ReduxStore]
+
+stop
+@enduml

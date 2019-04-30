@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "dev": "concurrently 'yarn run parcel' 'yarn run server'",
+    "parcel": "parcel serve index.html",
+    "server": "nodemon -w server.js server.js"
+  },
   "dependencies": {
     "@types/ramda": "^0.25.51",
     "@types/react": "^16.8.5",
@@ -14,5 +19,11 @@
     "seamless-immutable": "^7.1.4",
     "tslint": "^5.13.0",
     "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "antd": "^3.16.6",
+    "concurrently": "^4.1.0",
+    "less": "^2.7.3",
+    "nodemon": "^1.18.11"
   }
 }

@@ -1,0 +1,46 @@
+@startuml Mercury Initialization
+
+folder Mercury {
+    [AsyncDef] --> [Async]
+    [SyncDef] --> [Sync]
+
+    package Async {
+        [Async] --> [saga]
+    }
+
+    package Sync {
+        [Sync] --> [reducer]
+    }
+}
+
+package ReduxSaga {
+    interface "createMiddleware()" as cm
+
+    frame SagaMiddleware {
+        interface "SagaMiddleware.run(saga)" as scmr
+        [SagaMiddleware] as smw
+
+        cm --> smw
+        smw --> scmr
+    }
+
+
+    [saga] --> scmr
+}
+
+package Redux {
+    interface "combineReducer(reducer)" as cr
+    interface "createStore(reducer, middleware)" as cs
+
+    [reducer] --> cr
+    cr --> [rootReducer]
+
+    [rootReducer] --> cs
+    smw --> cs
+}
+
+node Store {
+    cs --> [Store]
+}
+
+@enduml
